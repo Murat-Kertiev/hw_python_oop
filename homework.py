@@ -132,8 +132,7 @@ def read_package(workout_type: str, data: List[int]) -> Training:
             'Такую тренировку мы не подготовили. Вот список доступных '
             'тренировок: ', *workout_type_class.keys()
         )
-    else:
-        return workout_type_class[workout_type](*data)
+    return workout_type_class[workout_type](*data)
 
 
 def main(training: Training) -> None:
