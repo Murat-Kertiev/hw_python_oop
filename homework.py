@@ -1,4 +1,4 @@
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass, asdict
 from typing import Dict, Type, ClassVar
 
 
@@ -131,9 +131,10 @@ def read_package(workout_type: str, data: list[int]) -> Training:
         package = workout_type_class[workout_type](*data)
         return package
     else:
-        raise ValueError('Такую тренировку мы не подготовили.'
-                         'Вот список доступных '
-                         'тренировок: ', *workout_type_class.keys())
+        raise ValueError(
+            'Такую тренировку мы не подготовили. Вот список доступных '
+            'тренировок: ', *workout_type_class.keys()
+        )
 
 
 def main(training: Training) -> None:
