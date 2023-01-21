@@ -1,5 +1,5 @@
-from dataclasses import dataclass, asdict
-from typing import Dict, List, Type, ClassVar
+from dataclasses import asdict, dataclass
+from typing import ClassVar, Dict, List, Type
 
 
 @dataclass
@@ -127,14 +127,13 @@ def read_package(workout_type: str, data: List[int]) -> Training:
         'WLK': SportsWalking
     }
 
-    if workout_type in workout_type_class:
-        package = workout_type_class[workout_type](*data)
-        return package
-    else:
+    if workout_type not in workout_type_class:
         raise ValueError(
             'Такую тренировку мы не подготовили. Вот список доступных '
             'тренировок: ', *workout_type_class.keys()
         )
+    else:
+        return workout_type_class[workout_type](*data)
 
 
 def main(training: Training) -> None:
